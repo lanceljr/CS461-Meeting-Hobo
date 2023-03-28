@@ -5,10 +5,64 @@
     android:layout_height="match_parent"
     tools:context=".TranslationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+    <ScrollView
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="match_parent">
 
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:scrollIndicators="right"
+            android:gravity="center_horizontal"
+            android:padding="70px"
+            tools:context=".MainActivity">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="30sp"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold"
+                    android:text="Recordings" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/meetingTitle"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:textAlignment="textStart"
+                android:textStyle="bold"
+                android:text="Meeting Title" />
+
+            <TextView
+                android:id="@+id/translatedText"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textAlignment="textStart"
+                android:textStyle="bold"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus convallis velit vitae neque scelerisque, vel blandit velit commodo. Curabitur et feugiat nisl. Phasellus eleifend, massa vel dignissim ullamcorper, elit nisl mollis urna, eu feugiat magna libero eu nibh. Nullam efficitur euismod enim, nec dictum velit mattis eget. Suspendisse commodo gravida felis non commodo. Sed tristique, sapien eu lacinia suscipit, dolor massa dapibus magna, nec euismod diam diam vel enim. Sed id nulla nulla. Quisque eu rutrum tellus. Nulla facilisi. Cras quis metus hendrerit, lacinia turpis eget, posuere metus. Vivamus fringilla metus vel sapien aliquam rhoncus." />
+
+
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>

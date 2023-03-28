@@ -32,7 +32,7 @@
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="30dp"
+                    android:textSize="30sp"
                     android:textAlignment="textStart"
                     android:textStyle="bold"
                     android:text="Recordings" />
@@ -42,10 +42,13 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_height="wrap_content"
                     android:layout_width="30dp"
-                    android:background="@drawable/new_recording_button"
-                    android:text="+ New">
+                    android:bottomRightRadius="40dp"
+                    android:bottomLeftRadius="40dp"
+                    android:topLeftRadius="40dp"
+                    android:topRightRadius="40dp"
+                    android:backgroundTint="#f00"
+                    android:text="+ New" />
 
-                </Button>
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

@@ -66,7 +66,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="login"
-        android:background="@drawable/my_button_background"
+        android:bottomRightRadius="40dp"
+        android:bottomLeftRadius="40dp"
+        android:topLeftRadius="40dp"
+        android:topRightRadius="40dp"
+        android:backgroundTint="#f00"
         android:text="Sign In" />
 
     <TextView

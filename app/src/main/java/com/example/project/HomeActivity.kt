@@ -1,6 +1,8 @@
 package com.example.project
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.project.databinding.ActivityHomeBinding
@@ -11,8 +13,19 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding!!.getRoot())
-        replaceFragment(HomeFragment())
-//        binding!!.bottomNavigationView.setBackground(null)
+        val intent = intent
+        val fromRecording = intent.getBooleanExtra("fromRecording", false)
+        if (fromRecording) {
+            val data = intent.getParcelableExtra<MyDataModel>("data")
+            val bundle = Bundle()
+            bundle.putParcelable("data", data)
+            val destinationFragment = TranslationFragment()
+            destinationFragment.arguments = bundle
+
+            replaceFragment(destinationFragment)
+        } else {
+            replaceFragment(HomeFragment())
+        }
         binding!!.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> replaceFragment(HomeFragment())
@@ -23,6 +36,7 @@ class HomeActivity : AppCompatActivity() {
             }
             true
         }
+//        binding!!.bottomNavigationView.setBackground(null)
     }
 
     private fun replaceFragment(fragment: Fragment) {

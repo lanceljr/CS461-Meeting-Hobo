@@ -108,8 +108,13 @@
                 android:paddingLeft="30dp"
                 android:textAlignment="textStart"
                 android:textColor="#FF0000"
-
-                android:background="@drawable/get_started_button"
+                android:bottomRightRadius="40dp"
+                android:bottomLeftRadius="40dp"
+                android:topLeftRadius="40dp"
+                android:topRightRadius="40dp"
+                android:backgroundTint="@color/white"
+                app:strokeColor="@color/red"
+                app:strokeWidth="1dp"
                 android:text="Get Started"
                 />
 

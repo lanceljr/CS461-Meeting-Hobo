@@ -1,11 +1,14 @@
 package com.example.project
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.project.databinding.ActivityHomeBinding
 
 class MyAdapter(var data: List<MyDataModel>, val context: FragmentActivity) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
@@ -35,6 +38,15 @@ class MyAdapter(var data: List<MyDataModel>, val context: FragmentActivity) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = data[position]
         holder.bind(item)
+
+        holder.itemView.setOnClickListener {
+            val item = data[position]
+            val intent = Intent(context, HomeActivity::class.java)
+            Log.i("data from adapter", item.toString())
+            intent.putExtra("fromRecording", true)
+            intent.putExtra("data", item)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

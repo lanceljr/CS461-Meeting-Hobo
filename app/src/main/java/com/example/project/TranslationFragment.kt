@@ -1,10 +1,13 @@
 package com.example.project
 
 import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,16 +20,14 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class TranslationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var myArg: MyDataModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            myArg = it.getParcelable("data")
         }
+        Log.i("create", myArg.toString())
     }
 
     override fun onCreateView(
@@ -34,7 +35,38 @@ class TranslationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        arguments?.let {
+            myArg = it.getParcelable("data")
+        }
+        Log.i("createview", myArg.toString())
         return inflater.inflate(R.layout.fragment_translation, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+//        Log.i("logging", "LOGGING BEFORE")
+//        val args = arguments
+//        Log.i("logging", args.toString())
+//        if (args != null) {
+//            Log.i("logging", "LOGGING")
+//            val data : MyDataModel? = args.getParcelable("data")
+//            Log.i("logging", data?.title.toString())
+//            requireActivity().findViewById<TextView>(R.id.meetingTitle).text = data?.title.toString()
+//        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Use the argument in the fragment
+        Log.i("logging", "LOGGING BEFORE")
+//        val args = arguments
+        Log.i("logging", myArg.toString())
+        if (myArg != null) {
+            Log.i("logging", "LOGGING")
+            Log.i("logging", myArg?.title.toString())
+            requireActivity().findViewById<TextView>(R.id.meetingTitle).text = myArg?.title.toString()
+        }
     }
 
     companion object {
