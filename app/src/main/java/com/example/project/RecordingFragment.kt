@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,16 +19,11 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class RecordingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: MyAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -34,26 +31,33 @@ class RecordingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recording, container, false)
+        val view = inflater.inflate(R.layout.fragment_recording, container, false)
+        recyclerView = view.findViewById(R.id.recycler)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        adapter = MyAdapter(getDataFromApi(), requireActivity())
+        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        recyclerView.adapter = adapter
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RecordingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RecordingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onResume() {
+        super.onResume()
+
+        // Set the data for the RecyclerView
+        val dataList = getDataFromApi()
+        adapter.data = dataList
+    }
+
+    private fun getDataFromApi(): List<MyDataModel> {
+        // Call the API and retrieve the data
+        // Convert the data into a list of MyData objects
+        var data = MyDataModel("IDP Meeting", "21", "Iter 2", "2 March 2023")
+        var data1 = MyDataModel("BPAS Meeting", "40", "Workflow Diagram", "10 Feb 2023")
+        var dataList = ArrayList<MyDataModel>()
+        dataList.add(data)
+        dataList.add(data1)
+        return dataList
     }
 }
