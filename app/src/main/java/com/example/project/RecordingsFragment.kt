@@ -15,10 +15,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [RecordingFragment.newInstance] factory method to
+ * Use the [RecordingsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class RecordingFragment : Fragment() {
+class RecordingsFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: MyAdapter
 
@@ -31,7 +31,7 @@ class RecordingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_recording, container, false)
+        val view = inflater.inflate(R.layout.fragment_recordings, container, false)
         recyclerView = view.findViewById(R.id.recycler)
         recyclerView.layoutManager = LinearLayoutManager(context)
 

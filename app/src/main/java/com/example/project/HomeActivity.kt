@@ -1,8 +1,7 @@
 package com.example.project
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.project.databinding.ActivityHomeBinding
@@ -15,6 +14,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding!!.getRoot())
         val intent = intent
         val fromRecording = intent.getBooleanExtra("fromRecording", false)
+        val newRecording = intent.getBooleanExtra("newRecording", false)
         if (fromRecording) {
             val data = intent.getParcelableExtra<MyDataModel>("data")
             val bundle = Bundle()
@@ -23,6 +23,8 @@ class HomeActivity : AppCompatActivity() {
             destinationFragment.arguments = bundle
 
             replaceFragment(destinationFragment)
+        } else if (newRecording){
+            replaceFragment(RecordFragment())
         } else {
             replaceFragment(HomeFragment())
         }
@@ -31,7 +33,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.profile -> replaceFragment(ProfileFragment())
                 R.id.translation -> replaceFragment(TranslationFragment())
-                R.id.recordings -> replaceFragment(RecordingFragment())
+                R.id.recordings -> replaceFragment(RecordingsFragment())
                 R.id.notes -> replaceFragment(NotesFragment())
             }
             true
@@ -44,5 +46,9 @@ class HomeActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
+    }
+
+    fun goToRecordings(view: View) {
+        replaceFragment(RecordingsFragment())
     }
 }

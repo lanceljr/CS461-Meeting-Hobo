@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecordingFragment">
+    tools:context=".RecordingsFragment">
 
     <ScrollView
         android:layout_height="match_parent"
@@ -47,7 +47,8 @@
                     android:topLeftRadius="40dp"
                     android:topRightRadius="40dp"
                     android:backgroundTint="#f00"
-                    android:text="+ New" />
+                    android:text="+ New"
+                    android:onClick="goToRecordings"/>
 
             </LinearLayout>
 
