@@ -1,6 +1,8 @@
 package com.example.project
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -59,5 +61,12 @@ class RecordingsFragment : Fragment() {
         dataList.add(data)
         dataList.add(data1)
         return dataList
+    }
+
+    fun goToRecordings(view: View) {
+        Log.i("going to recording", "going there")
+        val intent = Intent(context, HomeActivity::class.java)
+        intent.putExtra("newRecording", true)
+        requireContext().startActivity(intent)
     }
 }
