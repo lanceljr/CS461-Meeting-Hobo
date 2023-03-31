@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import okhttp3.Callback
@@ -48,6 +49,9 @@ class RecordingsFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         recyclerView.adapter = adapter
 
+        requireActivity().findViewById<Button>(R.id.newRecording).setOnClickListener {
+            goToRecording()
+        }
         return view
     }
 
@@ -85,8 +89,7 @@ class RecordingsFragment : Fragment() {
         return dataList
     }
 
-    fun goToRecordings(view: View) {
-        Log.i("going to recording", "going there")
+    fun goToRecording() {
         val intent = Intent(context, HomeActivity::class.java)
         intent.putExtra("newRecording", true)
         requireContext().startActivity(intent)

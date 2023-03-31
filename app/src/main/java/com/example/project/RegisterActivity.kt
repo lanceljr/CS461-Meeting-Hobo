@@ -27,8 +27,8 @@ class RegisterActivity : AppCompatActivity() {
             val client = OkHttpClient()
 
             val requestBody: RequestBody = FormBody.Builder()
-                .add("email", findViewById<EditText>(R.id.editTextEmail).text.toString())
-                .add("password", findViewById<EditText>(R.id.editTextPassword).text.toString())
+                .add("email", findViewById<EditText>(R.id.editTextEmailRegister).text.toString())
+                .add("password", findViewById<EditText>(R.id.editTextPasswordRegister).text.toString())
                 .build()
 
 
