@@ -1,7 +1,9 @@
 package com.example.project
 
+import android.app.DownloadManager
 import android.content.Intent
 import android.os.Bundle
+import android.telecom.Call
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import okhttp3.Callback
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import java.io.IOException
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,6 +67,21 @@ class RecordingsFragment : Fragment() {
         var dataList = ArrayList<MyDataModel>()
         dataList.add(data)
         dataList.add(data1)
+//        val client = OkHttpClient()
+//
+//        val request = Request.Builder()
+//            .url("https://api.example.com/data")
+//            .build()
+//
+//        client.newCall(request).enqueue(object : Callback {
+//            override fun onFailure(call: okhttp3.Call, e: IOException) {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onResponse(call: okhttp3.Call, response: Response) {
+//                TODO("Not yet implemented")
+//            }
+//        })
         return dataList
     }
 
