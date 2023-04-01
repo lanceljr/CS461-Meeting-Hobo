@@ -19,8 +19,7 @@
             android:orientation="vertical"
             android:scrollIndicators="right"
             android:gravity="center_horizontal"
-            android:padding="70px"
-            tools:context=".MainActivity">
+            android:padding="70px">
 
             <LinearLayout
                 android:orientation="horizontal"

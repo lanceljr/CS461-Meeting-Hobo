@@ -47,7 +47,7 @@ class HomeActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-    fun goToRecordings(view: View) {
+    fun goToRecordings() {
         replaceFragment(RecordingsFragment())
         binding!!.bottomNavigationView.selectedItemId = R.id.recordings
     }
