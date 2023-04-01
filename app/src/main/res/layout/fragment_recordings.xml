@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/frame_recordings"
     tools:context=".RecordingsFragment">
 
     <ScrollView
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        tools:context=".HomeActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -15,6 +17,7 @@
             android:orientation="vertical"
             android:scrollIndicators="right"
             android:gravity="center_horizontal"
+            tools:context=".HomeActivity"
             android:padding="70px">
 
             <LinearLayout
@@ -44,7 +47,6 @@
                     android:topLeftRadius="40dp"
                     android:topRightRadius="40dp"
                     android:backgroundTint="#f00"
-                    android:onClick="goToRecording"
                     android:text="+ New" />
 
             </LinearLayout>

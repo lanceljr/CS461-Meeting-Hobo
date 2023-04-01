@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun login(view: View) {
+        val it = Intent(this, HomeActivity::class.java)
+        startActivity(it)
         val client = OkHttpClient()
 
         val requestBody: RequestBody = FormBody.Builder()

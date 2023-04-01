@@ -14,7 +14,6 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding!!.getRoot())
         val intent = intent
         val fromRecording = intent.getBooleanExtra("fromRecording", false)
-        val newRecording = intent.getBooleanExtra("newRecording", false)
         if (fromRecording) {
             val data = intent.getParcelableExtra<MyDataModel>("data")
             val bundle = Bundle()
@@ -23,10 +22,10 @@ class HomeActivity : AppCompatActivity() {
             destinationFragment.arguments = bundle
 
             replaceFragment(destinationFragment)
-        } else if (newRecording){
-            replaceFragment(RecordFragment())
+            binding!!.bottomNavigationView.selectedItemId = R.id.translation
         } else {
             replaceFragment(HomeFragment())
+            binding!!.bottomNavigationView.selectedItemId = R.id.home
         }
         binding!!.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -50,5 +49,6 @@ class HomeActivity : AppCompatActivity() {
 
     fun goToRecordings(view: View) {
         replaceFragment(RecordingsFragment())
+        binding!!.bottomNavigationView.selectedItemId = R.id.recordings
     }
 }

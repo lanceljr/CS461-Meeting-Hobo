@@ -56,4 +56,8 @@ class HomeFragment : Fragment() {
                 }
             }
     }
+
+    fun goToRecordings(view: View) {
+
+    }
 }

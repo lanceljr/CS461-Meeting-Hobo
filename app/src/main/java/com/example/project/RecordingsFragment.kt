@@ -34,6 +34,9 @@ class RecordingsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        requireActivity().findViewById<Button>(R.id.newRecording).setOnClickListener {
+//            goToRecording()
+//        }
     }
 
     override fun onCreateView(
@@ -49,9 +52,6 @@ class RecordingsFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         recyclerView.adapter = adapter
 
-        requireActivity().findViewById<Button>(R.id.newRecording).setOnClickListener {
-            goToRecording()
-        }
         return view
     }
 
@@ -89,8 +89,8 @@ class RecordingsFragment : Fragment() {
         return dataList
     }
 
-    fun goToRecording() {
-        val intent = Intent(context, HomeActivity::class.java)
+    private fun goToRecording() {
+        val intent = Intent(requireContext(), RecordActivity::class.java)
         intent.putExtra("newRecording", true)
         requireContext().startActivity(intent)
     }
