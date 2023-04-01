@@ -28,7 +28,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [RecordingsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class RecordingsFragment : Fragment() {
+class RecordingsFragment : Fragment(), View.OnClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: MyAdapter
 
@@ -89,9 +89,8 @@ class RecordingsFragment : Fragment() {
         return dataList
     }
 
-    private fun goToRecording() {
-        val intent = Intent(requireContext(), RecordActivity::class.java)
-        intent.putExtra("newRecording", true)
-        requireContext().startActivity(intent)
+    override fun onClick(view: View) {
+        val activity = activity as HomeActivity
+        activity.goToRecording()
     }
 }

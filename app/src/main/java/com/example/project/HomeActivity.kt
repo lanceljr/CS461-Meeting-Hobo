@@ -1,5 +1,6 @@
 package com.example.project
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -50,5 +51,11 @@ class HomeActivity : AppCompatActivity() {
     fun goToRecordings() {
         replaceFragment(RecordingsFragment())
         binding!!.bottomNavigationView.selectedItemId = R.id.recordings
+    }
+
+    fun goToRecording() {
+        val intent = Intent(this, RecordActivity::class.java)
+        intent.putExtra("newRecording", true)
+        startActivity(intent)
     }
 }
