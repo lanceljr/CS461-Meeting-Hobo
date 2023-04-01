@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import okhttp3.Callback
@@ -86,6 +87,9 @@ class RecordingsFragment : Fragment(), View.OnClickListener {
 //                TODO("Not yet implemented")
 //            }
 //        })
+        if (dataList.size != 0) {
+            activity?.findViewById<TextView>(R.id.recordingText)?.visibility = View.GONE
+        }
         return dataList
     }
 
