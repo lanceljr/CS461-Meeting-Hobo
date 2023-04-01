@@ -3,6 +3,8 @@ package com.example.project
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -12,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.project.databinding.ActivityMainBinding
 import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
 import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
@@ -30,15 +35,19 @@ class MainActivity : AppCompatActivity() {
         startActivity(it)
         val client = OkHttpClient()
 
-        val requestBody: RequestBody = FormBody.Builder()
-            .add("email", findViewById<EditText>(R.id.editTextEmail).text.toString())
-            .add("password", findViewById<EditText>(R.id.editTextPassword).text.toString())
-            .build()
+        val email = findViewById<EditText>(R.id.editTextEmail).text.toString()
+        val password = findViewById<EditText>(R.id.editTextPassword).text.toString()
+
+
+        val jsonObject = JSONObject()
+        jsonObject.put("email", email)
+        jsonObject.put("password", password)
+        val json = jsonObject.toString()
 
 
         val request = Request.Builder()
-            .url("http://127.0.0.1/login")
-            .post(requestBody)
+            .url("http://10.0.2.2:5000/login")
+            .post(json.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
         client.newCall(request).enqueue(object : Callback {
@@ -59,13 +68,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createToast(message: String) {
-        val toast = Toast.makeText(this@MainActivity,
-            message,
-            Toast.LENGTH_LONG)
-        val toastView = toast.view
-        toastView?.setBackgroundColor(Color.RED)
-        val text = toastView?.findViewById(android.R.id.message) as TextView
-        text.setTextColor(Color.WHITE)
-        toast.show()
+        val handler = Handler(Looper.getMainLooper())
+        handler.post {
+            val toast = Toast.makeText(this@MainActivity,
+                message,
+                Toast.LENGTH_LONG)
+            val toastView = toast.view
+            toastView?.setBackgroundColor(Color.RED)
+            val text = toastView?.findViewById<TextView>(android.R.id.message)
+            text?.setTextColor(Color.WHITE)
+            toast.show()
+        }
+
     }
 }
