@@ -19,7 +19,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [NotesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class NotesFragment : Fragment() {
+class NotesFragment : Fragment(), View.OnClickListener  {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: NoteAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,8 +45,8 @@ class NotesFragment : Fragment() {
     private fun getDataFromApi(): List<Note> {
         // Call the API and retrieve the data
         // Convert the data into a list of MyData objects
-        var data = Note("IDP Meeting", "21", "NOTESIRTHJOWEIHNRFIOWENOFWEF")
-        var data1 = Note("BPAS Meeting", "40", "FIOWUEBNFOIWNEOFNWOEF")
+        var data = Note("IDP Meeting", "21", "NOTESIRTHJOWEIHNRFIOWENOFWEF", "1")
+        var data1 = Note("BPAS Meeting", "40", "FIOWUEBNFOIWNEOFNWOEF", "2")
         var dataList = ArrayList<Note>()
         dataList.add(data)
         dataList.add(data1)
@@ -69,5 +69,10 @@ class NotesFragment : Fragment() {
             activity?.findViewById<TextView>(R.id.notesText)?.visibility = View.GONE
         }
         return dataList
+    }
+
+    override fun onClick(view: View) {
+        val activity = activity as HomeActivity
+        activity.goToNoteActivity()
     }
 }

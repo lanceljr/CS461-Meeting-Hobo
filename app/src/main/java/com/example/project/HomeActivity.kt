@@ -15,7 +15,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding!!.getRoot())
         val intent = intent
         val fromRecording = intent.getBooleanExtra("fromRecording", false)
-        val fromNotes = intent.getBooleanExtra("fromNotes", false)
+        val toNotes = intent.getBooleanExtra("toNotes", false)
         if (fromRecording) {
             val data = intent.getParcelableExtra<MyDataModel>("data")
             val bundle = Bundle()
@@ -25,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
 
             replaceFragment(destinationFragment)
             binding!!.bottomNavigationView.selectedItemId = R.id.translation
-        } else if (fromNotes) {
+        } else if (toNotes) {
             replaceFragment(NotesFragment())
             binding!!.bottomNavigationView.selectedItemId = R.id.notes
         } else {
@@ -60,6 +60,11 @@ class HomeActivity : AppCompatActivity() {
     fun goToRecording() {
         val intent = Intent(this, RecordActivity::class.java)
         intent.putExtra("newRecording", true)
+        startActivity(intent)
+    }
+
+    fun goToNoteActivity() {
+        val intent = Intent(this, NoteActivity::class.java)
         startActivity(intent)
     }
 }

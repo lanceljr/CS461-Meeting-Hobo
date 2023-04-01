@@ -33,8 +33,7 @@ class NoteAdapter(var data: List<Note>, val context: FragmentActivity) :
 
         holder.itemView.setOnClickListener {
             val item = data[position]
-            val intent = Intent(context, HomeActivity::class.java)
-            intent.putExtra("fromNotes", true)
+            val intent = Intent(context, NoteActivity::class.java)
             intent.putExtra("data", item)
             context.startActivity(intent)
         }
