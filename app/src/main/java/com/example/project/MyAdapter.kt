@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -46,6 +47,10 @@ class MyAdapter(var data: List<MyDataModel>, val context: FragmentActivity) :
             intent.putExtra("fromRecording", true)
             intent.putExtra("data", item)
             context.startActivity(intent)
+        }
+
+        holder.itemView.findViewById<ImageView>(R.id.deleteMeeting).setOnClickListener {
+            // TODO: Delete meeting
         }
     }
 

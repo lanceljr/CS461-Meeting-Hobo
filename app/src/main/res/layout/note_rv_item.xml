@@ -40,15 +40,15 @@
 
         <!--imageview for displaying delete icon-->
         <ImageView
-            android:id="@+id/idIVDelete"
+            android:id="@+id/idNoteDelete"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_margin="3dp"
             android:padding="3dp"
-            android:src="@drawable/ic_delete"
+            android:src="@drawable/img"
             app:tint="@color/white" />
 
     </RelativeLayout>

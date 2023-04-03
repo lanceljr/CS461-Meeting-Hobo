@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +37,10 @@ class NoteAdapter(var data: List<Note>, val context: FragmentActivity) :
             val intent = Intent(context, NoteActivity::class.java)
             intent.putExtra("data", item)
             context.startActivity(intent)
+        }
+
+        holder.itemView.findViewById<ImageView>(R.id.idNoteDelete).setOnClickListener {
+            // TODO: Delete meeting
         }
     }
 
