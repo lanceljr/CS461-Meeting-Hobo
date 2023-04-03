@@ -57,10 +57,11 @@ class HomeActivity : AppCompatActivity() {
 
     fun goToRecordings() {
         replaceFragment(RecordingsFragment())
-        binding!!.bottomNavigationView.selectedItemId = R.id.recordings
+        binding!!.bottomNavigationView.selectedItemId = R.id.frame_recordings
     }
 
     fun goToRecording() {
+        print("called")
         val intent = Intent(this, RecordActivity::class.java)
         intent.putExtra("newRecording", true)
         startActivity(intent)
