@@ -42,7 +42,7 @@
         app:srcCompat="@drawable/mic"/>
 
     <TextView
-        android:id="@+id/time"
+        android:id="@+id/timeText"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

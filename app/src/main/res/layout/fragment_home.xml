@@ -114,7 +114,7 @@
                 android:backgroundTint="@color/white"
                 app:strokeColor="@color/red"
                 app:strokeWidth="1dp"
-                android:onClick="goToRecordings"
+                android:onClick="recording"
                 android:text="Get Started"
                 />
 
