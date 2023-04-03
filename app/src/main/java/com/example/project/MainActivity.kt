@@ -1,5 +1,6 @@
 package com.example.project
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -31,8 +32,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun login(view: View) {
-        val it = Intent(this, HomeActivity::class.java)
-        startActivity(it)
         val client = OkHttpClient()
 
         val email = findViewById<EditText>(R.id.editTextEmail).text.toString()
@@ -62,9 +61,19 @@ class MainActivity : AppCompatActivity() {
                         createToast("Email or password is incorrect. Please try again!")
                     } else {
                         val it = Intent(this@MainActivity, HomeActivity::class.java)
+                        val body = JSONObject(response.body?.string()!!)
+                        println(body)
+                        val userid = body.getString("userid")
+                        println(userid)
+                        // Initialize the SharedPreferences
+                        val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+
+                        // Store the token in SharedPreferences
+                        sharedPreferences.edit().putString("userid", userid).apply()
                         startActivity(it)
                     }
                 } catch (e: Exception) {
+                    println(e)
                 }
                 finally {
                     response.body?.close()

@@ -5,30 +5,35 @@
     android:layout_height="match_parent"
     tools:context=".NotesFragment">
 
-    <LinearLayout
+    <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
         android:layout_height="match_parent"
         tools:context=".HomeActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:id="@+id/notesText"
-            android:text="No Notes!"/>
-
-        <!--recycler view for displaying all notes-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/notesRV"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            tools:listitem="@layout/note_rv_item" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:id="@+id/notesText"
+                android:text="No Notes!"/>
+
+            <!--recycler view for displaying all notes-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notesRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                tools:listitem="@layout/note_rv_item" />
+        </LinearLayout>
+
 
         <!--fab for adding a new note-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -42,6 +47,8 @@
             android:src="@drawable/ic_baseline_add_24"
             app:tint="@color/white" />
 
-    </LinearLayout>
+
+
+    </RelativeLayout>
 
 </FrameLayout>

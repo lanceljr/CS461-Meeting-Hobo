@@ -14,8 +14,8 @@ class NoteAdapter(var data: List<Note>, val context: FragmentActivity) :
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val cardTitle = itemView.findViewById<TextView>(R.id.idTVNote)
-        private val cardDate = itemView.findViewById<TextView>(R.id.idTVDate)
+        private val cardTitle = itemView.findViewById<TextView>(R.id.noteName)
+        private val cardDate = itemView.findViewById<TextView>(R.id.noteDate)
 
         fun bind(item: Note) {
             cardTitle.text = item.title

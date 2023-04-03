@@ -41,7 +41,7 @@ class RecordActivity : AppCompatActivity() {
         timerText = findViewById<TextView>(R.id.timeText)
     }
 
-        fun startRecording(view: View) {
+    fun startRecording(view: View) {
 
         if (!recording) {
             findViewById<ImageView>(R.id.imagePlay).setImageResource(R.drawable.play)
@@ -52,6 +52,8 @@ class RecordActivity : AppCompatActivity() {
                 audioFile = it
             }
         }
+    }
+
 
     fun playRecording(view: View) {
         if (!playing) {
@@ -63,8 +65,8 @@ class RecordActivity : AppCompatActivity() {
             playing = false
             player.stop()
 
-            }
         }
+    }
 
     private fun startTimer() {
         seconds = 0
@@ -97,6 +99,7 @@ class RecordActivity : AppCompatActivity() {
         // TODO: call API and submit file
         goBackToRecordings()
     }
+
     fun backToRecordings(view: View) {
         goBackToRecordings()
     }

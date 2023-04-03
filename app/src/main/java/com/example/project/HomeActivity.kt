@@ -68,7 +68,9 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun goToNoteActivity() {
+        
         val intent = Intent(this, NoteActivity::class.java)
+//        intent.putExtra("data", null)
         startActivity(intent)
     }
 }
