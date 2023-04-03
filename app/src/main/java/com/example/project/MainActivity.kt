@@ -56,13 +56,20 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            override fun onResponse(call: okhttp3.Call, response: Response) {
-                if (response.code == 401) {
-                    createToast("Email or password is incorrect. Please try again!")
-                } else {
-                    val it = Intent(this@MainActivity, HomeActivity::class.java)
-                    startActivity(it)
+            override fun onResponse(call: Call, response: Response) {
+                try {
+                    if (response.code == 401) {
+                        createToast("Email or password is incorrect. Please try again!")
+                    } else {
+                        val it = Intent(this@MainActivity, HomeActivity::class.java)
+                        startActivity(it)
+                    }
+                } catch (e: Exception) {
                 }
+                finally {
+                    response.body?.close()
+                }
+
             }
         })
     }

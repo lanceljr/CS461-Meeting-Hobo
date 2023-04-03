@@ -55,13 +55,19 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    println(response)
-                    if (response.code == 400) {
-                        createToast("User has already been created with this email. Please use another one!")
-                    } else {
-                        val it = Intent(this@RegisterActivity, MainActivity::class.java)
-                        startActivity(it)
+                    try {
+                        if (response.code == 400) {
+                            createToast("User has already been created with this email. Please use another one!")
+                        } else {
+                            val it = Intent(this@RegisterActivity, MainActivity::class.java)
+                            startActivity(it)
+                        }
+                    } catch (e: Exception) {
                     }
+                    finally {
+                        response.body?.close()
+                    }
+
                 }
             })
         }
