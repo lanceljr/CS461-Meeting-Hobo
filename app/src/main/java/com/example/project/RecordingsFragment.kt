@@ -46,6 +46,7 @@ class RecordingsFragment : Fragment(), View.OnClickListener {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_recordings, container, false)
+
         recyclerView = view.findViewById(R.id.recycler)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
@@ -53,7 +54,13 @@ class RecordingsFragment : Fragment(), View.OnClickListener {
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         recyclerView.adapter = adapter
 
+        val myButton = view.findViewById<Button>(R.id.newRecording)
+        myButton.setOnClickListener(this::onClick)
+
+        // Return the fragment view/layout
         return view
+
+
     }
 
     override fun onResume() {
