@@ -43,7 +43,6 @@ class RecordActivity : AppCompatActivity() {
 
         fun startRecording(view: View) {
 
-<<<<<<< Updated upstream
         if (!recording) {
             findViewById<ImageView>(R.id.imagePlay).setImageResource(R.drawable.play)
             recording = true
@@ -51,23 +50,9 @@ class RecordActivity : AppCompatActivity() {
             File(this.cacheDir, "audio.mp3").also {
                 recorder.start(it)
                 audioFile = it
-=======
-            if (!recording) {
-                recording = true
-                startTimer()
-                File(this.cacheDir, "audio.mp3").also {
-                    recorder.start(it)
-                    audioFile = it
-                }
-            } else {
-                recording = false
-                recorder.stop()
-                stopTimer()
->>>>>>> Stashed changes
             }
         }
 
-<<<<<<< Updated upstream
     fun playRecording(view: View) {
         if (!playing) {
             findViewById<ImageView>(R.id.imagePlay).setImageResource(R.drawable.pause)
@@ -77,15 +62,6 @@ class RecordActivity : AppCompatActivity() {
             findViewById<ImageView>(R.id.imagePlay).setImageResource(R.drawable.play)
             playing = false
             player.stop()
-=======
-        fun playRecording(view: View) {
-            if (!playing) {
-                playing = true
-                player.playFile(audioFile!!)
-            } else {
-                playing = false
-                player.stop()
->>>>>>> Stashed changes
 
             }
         }
