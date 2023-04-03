@@ -34,13 +34,16 @@ class RecordActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_record)
         this.requestPermissions(
             arrayOf(android.Manifest.permission.RECORD_AUDIO), 0
         )
+        timerText = findViewById<TextView>(R.id.timeText)
     }
 
-    fun startRecording(view: View) {
+        fun startRecording(view: View) {
 
+<<<<<<< Updated upstream
         if (!recording) {
             findViewById<ImageView>(R.id.imagePlay).setImageResource(R.drawable.play)
             recording = true
@@ -48,14 +51,23 @@ class RecordActivity : AppCompatActivity() {
             File(this.cacheDir, "audio.mp3").also {
                 recorder.start(it)
                 audioFile = it
+=======
+            if (!recording) {
+                recording = true
+                startTimer()
+                File(this.cacheDir, "audio.mp3").also {
+                    recorder.start(it)
+                    audioFile = it
+                }
+            } else {
+                recording = false
+                recorder.stop()
+                stopTimer()
+>>>>>>> Stashed changes
             }
-        } else {
-            recording = false
-            recorder.stop()
-            stopTimer()
         }
-    }
 
+<<<<<<< Updated upstream
     fun playRecording(view: View) {
         if (!playing) {
             findViewById<ImageView>(R.id.imagePlay).setImageResource(R.drawable.pause)
@@ -65,9 +77,18 @@ class RecordActivity : AppCompatActivity() {
             findViewById<ImageView>(R.id.imagePlay).setImageResource(R.drawable.play)
             playing = false
             player.stop()
+=======
+        fun playRecording(view: View) {
+            if (!playing) {
+                playing = true
+                player.playFile(audioFile!!)
+            } else {
+                playing = false
+                player.stop()
+>>>>>>> Stashed changes
 
+            }
         }
-    }
 
     private fun startTimer() {
         seconds = 0
