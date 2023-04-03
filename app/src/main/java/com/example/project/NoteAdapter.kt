@@ -39,7 +39,7 @@ class NoteAdapter(var data: List<Note>, val context: FragmentActivity) :
             context.startActivity(intent)
         }
 
-        holder.itemView.findViewById<ImageView>(R.id.idNoteDelete).setOnClickListener {
+        holder.itemView.findViewById<ImageView>(R.id.deleteNote).setOnClickListener {
             // TODO: Delete meeting
         }
     }

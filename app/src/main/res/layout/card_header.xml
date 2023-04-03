@@ -26,7 +26,7 @@
             android:layout_weight="1"
             android:id="@+id/headerTalkingTime"
             android:text="21 mins"
-            android:textAlignment="textEnd"
+            android:gravity="end"
             android:textColor="@color/white"/>
     </LinearLayout>
 
