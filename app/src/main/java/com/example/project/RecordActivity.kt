@@ -1,10 +1,12 @@
 package com.example.project
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.example.project.playback.AndroidAudioPlayer
@@ -40,6 +42,7 @@ class RecordActivity : AppCompatActivity() {
     fun startRecording(view: View) {
 
         if (!recording) {
+            findViewById<ImageView>(R.id.imagePlay).setImageResource(R.drawable.play)
             recording = true
             startTimer()
             File(this.cacheDir, "audio.mp3").also {
@@ -55,9 +58,11 @@ class RecordActivity : AppCompatActivity() {
 
     fun playRecording(view: View) {
         if (!playing) {
+            findViewById<ImageView>(R.id.imagePlay).setImageResource(R.drawable.pause)
             playing = true
             player.playFile(audioFile!!)
         } else {
+            findViewById<ImageView>(R.id.imagePlay).setImageResource(R.drawable.play)
             playing = false
             player.stop()
 
@@ -65,6 +70,7 @@ class RecordActivity : AppCompatActivity() {
     }
 
     private fun startTimer() {
+        seconds = 0
         timer = object : CountDownTimer(Long.MAX_VALUE, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 seconds++
@@ -79,7 +85,6 @@ class RecordActivity : AppCompatActivity() {
     private fun stopTimer() {
         timer?.cancel()
         timerRunning = false
-        seconds = 0
         updateTimer()
     }
 
@@ -89,5 +94,19 @@ class RecordActivity : AppCompatActivity() {
         val secs = seconds % 60
         val timeString = String.format("%02d:%02d:%02d", hours, minutes, secs)
         timerText.text = timeString
+    }
+
+    fun submitFile(view: View) {
+        // TODO: call API and submit file
+        goBackToRecordings()
+    }
+    fun backToRecordings(view: View) {
+        goBackToRecordings()
+    }
+
+    private fun goBackToRecordings() {
+        val it = Intent(this, HomeActivity::class.java)
+        it.putExtra("goToRecordings", true)
+        startActivity(it)
     }
 }

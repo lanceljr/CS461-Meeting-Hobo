@@ -16,7 +16,7 @@
         android:layout_marginTop="0.5in"
         android:layout_width="296dp"
         android:layout_height="267dp"
-        app:srcCompat="@drawable/main_picture" />
+        app:srcCompat="@drawable/login" />
 
     <EditText
         android:id="@+id/editTextName"

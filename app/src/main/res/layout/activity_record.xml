@@ -63,6 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageCross"
+            android:onClick="backToRecordings"
             app:srcCompat="@drawable/cross"/>
         <ImageView
             android:layout_weight="1"
@@ -70,12 +71,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/imagePlay"
             android:onClick="playRecording"
-            app:srcCompat="@drawable/play"/>
+            app:srcCompat="@drawable/blank_play"/>
         <ImageView
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageTick"
+            android:onClick="submitFile"
             app:srcCompat="@drawable/tick"/>
     </LinearLayout>
 
