@@ -42,6 +42,19 @@ class RecordingsFragment : Fragment(), View.OnClickListener {
 //        }
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        if (requireActivity().intent != null) {
+            recyclerView = requireActivity().findViewById(R.id.recycler)
+            recyclerView.layoutManager = LinearLayoutManager(context)
+
+            adapter = MyAdapter(getDataFromApi(), requireActivity())
+            recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+            recyclerView.adapter = adapter
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -66,6 +79,7 @@ class RecordingsFragment : Fragment(), View.OnClickListener {
     }
 
 //    override fun onResume() {
+//        super.onResume()
 //
 //        // Set the data for the RecyclerView
 //        val dataList = getDataFromApi()
@@ -107,10 +121,10 @@ class RecordingsFragment : Fragment(), View.OnClickListener {
                     val date = d.getString("date")
                     val hasBeenAssigned = d.getBoolean("hasBeenAssigned")
                     val jsonSentences = d.getJSONArray("sentences")
-                    val sentences = ArrayList<Pair<String, Int>>()
+                    val sentences = ArrayList<Pair<String, String>>()
                     for (i in 0 until jsonSentences.length()) {
                         val sentence = jsonSentences.getJSONArray(i)
-                        sentences.add(Pair(sentence.get(1).toString(), sentence.get(0) as Int))
+                        sentences.add(Pair(sentence.get(1).toString(), sentence.get(0).toString()))
                     }
                     dataList.add(MyDataModel(id, title, time, date, sentences, hasBeenAssigned))
                 }

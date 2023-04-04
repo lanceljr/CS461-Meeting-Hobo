@@ -2,6 +2,7 @@ package com.example.project
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ class HomeActivity : AppCompatActivity() {
         val fromRecording = intent.getBooleanExtra("fromRecording", false)
         val toNotes = intent.getBooleanExtra("toNotes", false)
         val toRecordings = intent.getBooleanExtra("goToRecordings", false)
+        val toAssign = intent.getBooleanExtra("assignSpeaker", false)
         if (fromRecording) {
             val data = intent.getParcelableExtra<MyDataModel>("data")
             val bundle = Bundle()
@@ -31,6 +33,8 @@ class HomeActivity : AppCompatActivity() {
             binding!!.bottomNavigationView.selectedItemId = R.id.notes
         } else if (toRecordings) {
             goToRecordings()
+        } else if (toAssign) {
+            goToAssign(intent.getParcelableExtra<MyDataModel>("data"))
         } else {
             replaceFragment(HomeFragment())
             binding!!.bottomNavigationView.selectedItemId = R.id.home
@@ -46,6 +50,15 @@ class HomeActivity : AppCompatActivity() {
             true
         }
 //        binding!!.bottomNavigationView.setBackground(null)
+    }
+
+    private fun goToAssign(parcelableExtra: MyDataModel?) {
+        Log.i("parcel", parcelableExtra.toString())
+        val intent = Intent(this, AssignSpeaker::class.java)
+        intent.putExtra("data", parcelableExtra)
+        intent.putExtra("meetingId", parcelableExtra?.id)
+        Log.i("intent home", intent.toString())
+        startActivity(intent)
     }
 
     private fun replaceFragment(fragment: Fragment) {

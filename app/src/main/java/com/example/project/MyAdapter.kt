@@ -66,10 +66,12 @@ class MyAdapter(var data: List<MyDataModel>, val context: FragmentActivity) :
         holder.bind(item)
 
         holder.itemView.setOnClickListener {
+            println(item.toString())
             if (!item.hasBeenAssigned) {
-                val intent = Intent(context, AssignSpeaker::class.java)
-                intent.putExtra("fromRecording", true)
+                println("Item not assigned")
+                val intent = Intent(context, HomeActivity::class.java)
                 intent.putExtra("data", item)
+                intent.putExtra("assignSpeaker", true)
                 context.startActivity(intent)
             } else {
                 val intent = Intent(context, HomeActivity::class.java)
