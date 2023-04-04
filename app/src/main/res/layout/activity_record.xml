@@ -50,7 +50,7 @@
         android:textAlignment="textStart"
         android:textStyle="bold"
 
-        android:text="01: 47" />
+        android:text="00:00:00" />
 
     <LinearLayout
         android:layout_weight="1"

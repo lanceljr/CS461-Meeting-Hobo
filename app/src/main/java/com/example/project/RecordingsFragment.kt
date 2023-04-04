@@ -65,13 +65,12 @@ class RecordingsFragment : Fragment(), View.OnClickListener {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        // Set the data for the RecyclerView
-        val dataList = getDataFromApi()
-        adapter.data = dataList
-    }
+//    override fun onResume() {
+//
+//        // Set the data for the RecyclerView
+//        val dataList = getDataFromApi()
+//        adapter.data = dataList
+//    }
 
     private fun getDataFromApi(): List<MyDataModel> {
         // Call the API and retrieve the data
@@ -117,10 +116,8 @@ class RecordingsFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
-        if (dataList.size != 0) {
-            activity?.findViewById<TextView>(R.id.recordingText)?.visibility = View.GONE
-        }
         return dataList
+
     }
 
     override fun onClick(view: View) {

@@ -60,12 +60,10 @@ class RegisterActivity : AppCompatActivity() {
                             createToast("User has already been created with this email. Please use another one!")
                         } else {
                             val it = Intent(this@RegisterActivity, MainActivity::class.java)
+                            response.body?.close()
                             startActivity(it)
                         }
                     } catch (e: Exception) {
-                    }
-                    finally {
-                        response.body?.close()
                     }
 
                 }

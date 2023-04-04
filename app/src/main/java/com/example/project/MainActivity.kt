@@ -70,13 +70,11 @@ class MainActivity : AppCompatActivity() {
 
                         // Store the token in SharedPreferences
                         sharedPreferences.edit().putString("userid", userid).apply()
+                        response.body?.close()
                         startActivity(it)
                     }
                 } catch (e: Exception) {
                     println(e)
-                }
-                finally {
-                    response.body?.close()
                 }
 
             }

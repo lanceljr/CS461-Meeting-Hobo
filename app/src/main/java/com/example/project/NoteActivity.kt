@@ -104,12 +104,11 @@ class NoteActivity : AppCompatActivity() {
                     try {
                         val intent = Intent(this@NoteActivity, HomeActivity::class.java)
                         intent.putExtra("toNotes", true)
+                        response.body?.close()
                         startActivity(intent)
                     } catch (e: Exception) {
                     }
-                    finally {
-                        response.body?.close()
-                    }
+
 
                 }
             })
@@ -120,6 +119,7 @@ class NoteActivity : AppCompatActivity() {
             println(note)
 
             val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+            sdf.timeZone = TimeZone.getDefault()
             val currentDate = sdf.format(Date())
             jsonObject.put("id", id)
             jsonObject.put("title", title)
@@ -141,11 +141,9 @@ class NoteActivity : AppCompatActivity() {
                     try {
                         val intent = Intent(this@NoteActivity, HomeActivity::class.java)
                         intent.putExtra("toNotes", true)
+                        response.body?.close()
                         startActivity(intent)
                     } catch (e: Exception) {
-                    }
-                    finally {
-                        response.body?.close()
                     }
 
                 }

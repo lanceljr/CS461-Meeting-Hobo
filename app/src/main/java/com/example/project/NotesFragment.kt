@@ -55,19 +55,20 @@ class NotesFragment : Fragment(), View.OnClickListener  {
         recyclerView = view.findViewById(R.id.notesRV)
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = NoteAdapter(getDataFromApi(), requireActivity())
+
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         recyclerView.adapter = adapter
 
         return view
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        // Set the data for the RecyclerView
-        val dataList = getDataFromApi()
-        adapter.data = dataList
-    }
+//    override fun onResume() {
+//        super.onResume()
+//
+//        // Set the data for the RecyclerView
+//        val dataList = getDataFromApi()
+//        adapter.data = dataList
+//    }
 
     private fun getDataFromApi(): List<Note> {
         // Call the API and retrieve the data
@@ -94,23 +95,28 @@ class NotesFragment : Fragment(), View.OnClickListener  {
             }
 
             override fun onResponse(call: okhttp3.Call, response: Response) {
-                val body = JSONObject(response.body?.string()!!)
-                val responseData = body.getJSONArray("data")
-                for (i in 0 until responseData.length()) {
-                    val d = responseData.getJSONObject(i)
-                    val id = d.getString("_id")
-                    val title = d.getString("title")
-                    val note = d.getString("note")
-                    val date = d.getString("date")
-                    dataList.add(Note(title, date, note, id))
+                try {
+                    val body = JSONObject(response.body?.string()!!)
+                    val responseData = body.getJSONArray("data")
+                    for (i in 0 until responseData.length()) {
+                        val d = responseData.getJSONObject(i)
+                        val id = d.getString("_id")
+                        val title = d.getString("title")
+                        val note = d.getString("note")
+                        val date = d.getString("date")
+                        dataList.add(Note(title, date, note, id))
+
+                    }
+                } catch (e: Exception) {
+
+                } finally {
+                    response.body?.close()
                 }
             }
         })
-
-        if (dataList.size != 0) {
-            activity?.findViewById<TextView>(R.id.notesText)?.visibility = View.GONE
-        }
         return dataList
+
+
     }
 
     override fun onClick(view: View) {

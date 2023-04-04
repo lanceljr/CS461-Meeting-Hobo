@@ -57,7 +57,7 @@ class HomeActivity : AppCompatActivity() {
 
     fun goToRecordings() {
         replaceFragment(RecordingsFragment())
-        binding!!.bottomNavigationView.selectedItemId = R.id.frame_recordings
+        binding!!.bottomNavigationView.selectedItemId = R.id.recordings
     }
 
     fun goToRecording() {

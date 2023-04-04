@@ -18,12 +18,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:id="@+id/notesText"
-                android:text="No Notes!"/>
 
             <!--recycler view for displaying all notes-->
             <androidx.recyclerview.widget.RecyclerView
