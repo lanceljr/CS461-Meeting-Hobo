@@ -52,17 +52,14 @@
                 android:textStyle="bold"
                 android:text="Meeting Title" />
 
-            <TextView
-                android:id="@+id/translatedText"
-                android:layout_weight="1"
-                android:layout_gravity="start"
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_transcript"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textAlignment="textStart"
-                android:textStyle="bold"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus convallis velit vitae neque scelerisque, vel blandit velit commodo. Curabitur et feugiat nisl. Phasellus eleifend, massa vel dignissim ullamcorper, elit nisl mollis urna, eu feugiat magna libero eu nibh. Nullam efficitur euismod enim, nec dictum velit mattis eget. Suspendisse commodo gravida felis non commodo. Sed tristique, sapien eu lacinia suscipit, dolor massa dapibus magna, nec euismod diam diam vel enim. Sed id nulla nulla. Quisque eu rutrum tellus. Nulla facilisi. Cras quis metus hendrerit, lacinia turpis eget, posuere metus. Vivamus fringilla metus vel sapien aliquam rhoncus." />
+                tools:listitem="@layout/transcript_card">
 
+
+            </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
     </ScrollView>

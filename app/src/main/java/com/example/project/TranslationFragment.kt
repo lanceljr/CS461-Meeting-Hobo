@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,13 +23,12 @@ private const val ARG_PARAM2 = "param2"
  */
 class TranslationFragment : Fragment() {
     private var myArg: MyDataModel? = null
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: TranscriptAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            myArg = it.getParcelable("data")
-        }
-        Log.i("create", myArg.toString())
+
     }
 
     override fun onCreateView(
@@ -38,12 +39,19 @@ class TranslationFragment : Fragment() {
         arguments?.let {
             myArg = it.getParcelable("data")
         }
-        Log.i("createview", myArg.toString())
         return inflater.inflate(R.layout.fragment_translation, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        if (requireActivity().intent != null) {
+            recyclerView = requireActivity().findViewById<RecyclerView>(R.id.recycler_transcript)
+            recyclerView.layoutManager = LinearLayoutManager(context)
+
+            adapter = TranscriptAdapter(myArg?.sentences!!, requireActivity())
+            recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+            recyclerView.adapter = adapter
+        }
 
     }
 

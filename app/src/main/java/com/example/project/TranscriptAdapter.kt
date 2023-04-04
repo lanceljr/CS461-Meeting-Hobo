@@ -7,26 +7,22 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 
-class SpeakerAdapter (var data: ArrayList<Pair<String, String>>, val context: FragmentActivity) :
-    RecyclerView.Adapter<SpeakerAdapter.MyViewHolder>() {
+class TranscriptAdapter (var data: ArrayList<Pair<String, String>>, val context: FragmentActivity) :
+    RecyclerView.Adapter<TranscriptAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val speakerNameText = itemView.findViewById<TextView>(R.id.speakerName)
-        private val speakerSentenceText = itemView.findViewById<TextView>(R.id.speakerSentence)
+        private val transcriptNameText = itemView.findViewById<TextView>(R.id.transcriptName)
+        private val transcriptSentenceText = itemView.findViewById<TextView>(R.id.transcript_words)
 
         fun bind(item: Pair<String, String>) {
-            println(itemView)
-            println(item.toString())
-            println(speakerNameText)
-            speakerNameText.setText(item.second.toString())
-            speakerNameText.text = item.second.toString()
-            speakerSentenceText.text = item.first
+            transcriptSentenceText.text = item.second
+            transcriptNameText.text = item.first
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.speaker, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.transcript_card, parent, false)
         return MyViewHolder(view)
     }
 
