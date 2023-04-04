@@ -121,12 +121,17 @@ class RecordingsFragment : Fragment(), View.OnClickListener {
                     val date = d.getString("date")
                     val hasBeenAssigned = d.getBoolean("hasBeenAssigned")
                     val jsonSentences = d.getJSONArray("sentences")
+                    val firstSentences = d.getJSONObject("firstSentences")
+                    val firstArr = ArrayList<Pair<String, String>>()
                     val sentences = ArrayList<Pair<String, String>>()
                     for (i in 0 until jsonSentences.length()) {
                         val sentence = jsonSentences.getJSONArray(i)
                         sentences.add(Pair(sentence.get(1).toString(), sentence.get(0).toString()))
                     }
-                    dataList.add(MyDataModel(id, title, time, date, sentences, hasBeenAssigned))
+                    for (key in firstSentences.keys()) {
+                        firstArr.add(Pair(firstSentences.get(key).toString(),key.toString()))
+                    }
+                    dataList.add(MyDataModel(id, title, time, date, sentences, hasBeenAssigned, firstArr))
                 }
             }
         })

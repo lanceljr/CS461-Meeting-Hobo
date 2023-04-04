@@ -14,12 +14,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import okhttp3.Callback
+import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
@@ -37,8 +34,11 @@ class AssignSpeaker : AppCompatActivity() {
         Log.i("intent", it.toString())
         var intentData = it.getParcelableExtra<MyDataModel>("data")
         meetingId = intentData?.id.toString()
+        // check if recording is completed, throw exception if not
+
+
         Log.i("data", intentData.toString())
-        dataList = intentData?.sentences!!
+        dataList = intentData?.firstSentences!!
         recyclerView = findViewById(R.id.recyclerSpeaker)
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = SpeakerAdapter(dataList, this)
