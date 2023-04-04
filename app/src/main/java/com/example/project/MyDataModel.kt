@@ -6,5 +6,5 @@ import kotlinx.android.parcel.Parcelize
 data class MyDataModel(
     val id: String,
     val title: String, val time: String, val date: String,
-    val sentences: List<Pair<String, Int>>
+    val sentences: List<Pair<String, Int>>, val hasBeenAssigned: Boolean
 ) : Parcelable

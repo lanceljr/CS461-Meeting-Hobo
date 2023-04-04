@@ -39,12 +39,17 @@ class MyAdapter(var data: List<MyDataModel>, val context: FragmentActivity) :
         holder.bind(item)
 
         holder.itemView.setOnClickListener {
-            val item = data[position]
-            val intent = Intent(context, HomeActivity::class.java)
-            Log.i("data from adapter", item.toString())
-            intent.putExtra("fromRecording", true)
-            intent.putExtra("data", item)
-            context.startActivity(intent)
+            if (!item.hasBeenAssigned) {
+                val intent = Intent(context, AssignSpeaker::class.java)
+                intent.putExtra("fromRecording", true)
+                intent.putExtra("data", item)
+                context.startActivity(intent)
+            } else {
+                val intent = Intent(context, HomeActivity::class.java)
+                intent.putExtra("fromRecording", true)
+                intent.putExtra("data", item)
+                context.startActivity(intent)
+            }
         }
 
         holder.itemView.findViewById<ImageView>(R.id.deleteMeeting).setOnClickListener {
