@@ -30,11 +30,13 @@ class RegisterActivity : AppCompatActivity() {
             createToast("Please ensure your confirmed password is the same as your password!")
 
         } else {
+            val name = findViewById<EditText>(R.id.editTextName).text.toString()
             val email = findViewById<EditText>(R.id.editTextEmailRegister).text.toString()
             val password = findViewById<EditText>(R.id.editTextPasswordRegister).text.toString()
             val client = OkHttpClient()
 
             val jsonObject = JSONObject()
+            jsonObject.put("name", name)
             jsonObject.put("email", email)
             jsonObject.put("password", password)
             val json = jsonObject.toString()
