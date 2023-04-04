@@ -44,19 +44,5 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/commonWordStatic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="15sp"
-        android:text="Most Common Word"/>
-
-    <TextView
-        android:id="@+id/commonWord"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:text="Workflow Diagram"/>
 
 </LinearLayout>
