@@ -1,10 +1,13 @@
 package com.example.project
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import com.example.project.databinding.ActivityHomeBinding
 
@@ -14,6 +17,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding!!.getRoot())
+
         val intent = intent
         val fromRecording = intent.getBooleanExtra("fromRecording", false)
         val toNotes = intent.getBooleanExtra("toNotes", false)
@@ -27,7 +31,7 @@ class HomeActivity : AppCompatActivity() {
             destinationFragment.arguments = bundle
 
             replaceFragment(destinationFragment)
-            binding!!.bottomNavigationView.selectedItemId = R.id.translation
+            binding!!.bottomNavigationView.selectedItemId = R.id.recordings
         } else if (toNotes) {
             replaceFragment(NotesFragment())
             binding!!.bottomNavigationView.selectedItemId = R.id.notes
@@ -36,14 +40,19 @@ class HomeActivity : AppCompatActivity() {
         } else if (toAssign) {
             goToAssign(intent.getParcelableExtra<MyDataModel>("data"))
         } else {
-            replaceFragment(HomeFragment())
+            val bundle = Bundle()
+            val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+            bundle.putString("name", sharedPreferences.getString("name", ""))
+            val destinationFragment = HomeFragment()
+            destinationFragment.arguments = bundle
+
+            replaceFragment(destinationFragment)
             binding!!.bottomNavigationView.selectedItemId = R.id.home
         }
         binding!!.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.profile -> replaceFragment(ProfileFragment())
-                R.id.translation -> replaceFragment(TranslationFragment())
                 R.id.recordings -> replaceFragment(RecordingsFragment())
                 R.id.notes -> replaceFragment(NotesFragment())
             }

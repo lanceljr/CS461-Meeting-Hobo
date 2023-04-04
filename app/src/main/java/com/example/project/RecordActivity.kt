@@ -1,5 +1,6 @@
 package com.example.project
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.media.AudioFormat
@@ -51,6 +52,7 @@ class RecordActivity : AppCompatActivity() {
             arrayOf(android.Manifest.permission.RECORD_AUDIO), 0
         )
         timerText = findViewById<TextView>(R.id.timeText)
+
 
     }
 
@@ -114,22 +116,22 @@ class RecordActivity : AppCompatActivity() {
 
     fun submitFile(view: View) {
         // TODO: call API and submit file
-        goBackToRecordings()
+        val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+        // Retrieve the token from SharedPreferences
+        val userid = sharedPreferences.getString("userid", "")
+
+
         val client = OkHttpClient()
-        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
-        sdf.timeZone = TimeZone.getDefault()
-        val currentDate = sdf.format(Date())
 
         // check if recording is completed, throw exception if not
         val requestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("name", findViewById<EditText>(R.id.meetingName).text.toString())
-            .addFormDataPart("date", currentDate)
             .addFormDataPart("recording",audioFile!!.name, RequestBody.create("audio/*".toMediaTypeOrNull(), audioFile!!))
             .build()
 
         val request = Request.Builder()
-            .url("http://10.0.2.2:5000/transcribe")
+            .url("http://10.0.2.2:5000/transcribe/" + userid)
             .post(requestBody)
             .build()
         println(request.toString())
@@ -143,11 +145,12 @@ class RecordActivity : AppCompatActivity() {
                 try {
                     createToast("Recording is being processed")
                     response.body?.close()
+                    goBackToRecordings()
                     }
                  catch (e: Exception) {
 
                 } finally {
-                    goBackToRecordings()
+
                 }
             }
         })

@@ -64,12 +64,14 @@ class MainActivity : AppCompatActivity() {
                         val body = JSONObject(response.body?.string()!!)
                         println(body)
                         val userid = body.getString("userid")
+                        val name = body.getString("name")
                         println(userid)
                         // Initialize the SharedPreferences
                         val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
 
                         // Store the token in SharedPreferences
                         sharedPreferences.edit().putString("userid", userid).apply()
+                        sharedPreferences.edit().putString("name", name).apply()
                         response.body?.close()
                         startActivity(it)
                     }

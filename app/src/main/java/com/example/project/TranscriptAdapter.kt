@@ -16,8 +16,8 @@ class TranscriptAdapter (var data: ArrayList<Pair<String, String>>, val context:
         private val transcriptSentenceText = itemView.findViewById<TextView>(R.id.transcript_words)
 
         fun bind(item: Pair<String, String>) {
-            transcriptSentenceText.text = item.second
-            transcriptNameText.text = item.first
+            transcriptSentenceText.text = item.first
+            transcriptNameText.text = item.second
         }
     }
 

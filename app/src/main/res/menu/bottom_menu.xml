@@ -7,11 +7,6 @@
         android:icon="@drawable/ic_baseline_home_24" />
 
     <item
-        android:id="@+id/translation"
-        android:title="Translation"
-        android:icon="@drawable/ic_baseline_volume_up_24"/>
-
-    <item
         android:id="@+id/recordings"
         android:title="Recordings"
         android:icon="@drawable/ic_baseline_mic_24" />
