@@ -61,6 +61,14 @@ class NotesFragment : Fragment(), View.OnClickListener  {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        // Set the data for the RecyclerView
+        val dataList = getDataFromApi()
+        adapter.data = dataList
+    }
+
     private fun getDataFromApi(): List<Note> {
         // Call the API and retrieve the data
         // Convert the data into a list of MyData objects

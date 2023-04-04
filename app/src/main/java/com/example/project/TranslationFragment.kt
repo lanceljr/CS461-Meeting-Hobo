@@ -44,15 +44,7 @@ class TranslationFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        Log.i("logging", "LOGGING BEFORE")
-//        val args = arguments
-//        Log.i("logging", args.toString())
-//        if (args != null) {
-//            Log.i("logging", "LOGGING")
-//            val data : MyDataModel? = args.getParcelable("data")
-//            Log.i("logging", data?.title.toString())
-//            requireActivity().findViewById<TextView>(R.id.meetingTitle).text = data?.title.toString()
-//        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,7 +57,8 @@ class TranslationFragment : Fragment() {
         if (myArg != null) {
             Log.i("logging", "LOGGING")
             Log.i("logging", myArg?.title.toString())
-            requireActivity().findViewById<TextView>(R.id.meetingTitle).text = myArg?.title.toString()
+            requireActivity().findViewById<TextView>(R.id.recordingTitle).text = myArg?.title.toString()
+            requireActivity().findViewById<TextView>(R.id.recordingDate).text = myArg?.date.toString()
         }
     }
 

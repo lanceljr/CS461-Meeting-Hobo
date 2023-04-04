@@ -17,17 +17,15 @@ class MyAdapter(var data: List<MyDataModel>, val context: FragmentActivity) :
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val cardBodyTalkingTime = itemView.findViewById<TextView>(R.id.talkingTime)
-        private val cardBodyCommonWord = itemView.findViewById<TextView>(R.id.commonWord)
         private val cardHeaderTitle = itemView.findViewById<TextView>(R.id.meetingName)
         private val cardHeaderTime = itemView.findViewById<TextView>(R.id.headerTalkingTime)
         private val cardHeaderDate = itemView.findViewById<TextView>(R.id.meetingDate)
 
         fun bind(item: MyDataModel) {
-            cardBodyCommonWord.text = item.common
             cardHeaderDate.text = item.date
-            cardBodyTalkingTime.text = item.time + "minutes"
+            cardBodyTalkingTime.text = item.time
             cardHeaderTitle.text = item.title
-            cardHeaderTime.text = item.time + "mins"
+            cardHeaderTime.text = item.time
         }
     }
 

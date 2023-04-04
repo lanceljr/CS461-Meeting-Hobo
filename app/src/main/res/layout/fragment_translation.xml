@@ -29,20 +29,20 @@
                 android:layout_marginBottom="20dp"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/recordingTitle"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="30sp"
                     android:textAlignment="textStart"
                     android:textStyle="bold"
-                    android:text="Recordings" />
+                    android:text="Recording Title" />
 
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/meetingTitle"
+                android:id="@+id/recordingDate"
                 android:layout_weight="1"
                 android:layout_gravity="start"
                 android:layout_width="wrap_content"

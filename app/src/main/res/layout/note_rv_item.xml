@@ -9,49 +9,78 @@
     app:cardElevation="40dp"
     >
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_weight="1"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_weight="1"
-                android:id="@+id/noteName"
-                android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:background="#FF0000">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="Note Name"/>
+                android:orientation="horizontal"
+                >
 
-            <ImageView
-                android:layout_weight="1"
-                android:gravity="end"
-                android:id="@+id/deleteNote"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                app:srcCompat="@drawable/del_button"
-                />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/noteName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Note Name"/>
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/noteDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:text="Note Date"/>
+
+                <ImageView
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:id="@+id/deleteNote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/del_button"
+                    />
+
+            </LinearLayout>
+
+
         </LinearLayout>
 
-        <TextView
-            android:layout_weight="1"
-            android:id="@+id/noteDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="Note Date"/>
-
-
     </LinearLayout>
-
 
 
 </androidx.cardview.widget.CardView>
