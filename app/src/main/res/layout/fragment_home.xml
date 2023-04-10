@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="30dp"
                     android:textColor="#FF0000"
-                    android:text="Lance" />
+                    />
             </LinearLayout>
 
 

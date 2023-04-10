@@ -51,7 +51,14 @@ class HomeFragment : Fragment(), View.OnClickListener {
     ): View? {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        val sharedPreferences =
+            requireContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+        // Retrieve the token from SharedPreferences
+        val name = sharedPreferences.getString("name", "")
+        val textView = view.findViewById<TextView>(R.id.textView2)
+        textView.text = names
+        return view
     }
 
     override fun onClick(view: View) {

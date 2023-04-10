@@ -120,7 +120,7 @@ class NoteActivity : AppCompatActivity() {
 
             val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
             sdf.timeZone = TimeZone.getTimeZone("Asia/Singapore")
-            val currentDate = sdf.parse(Date().toString())
+            val currentDate = sdf.format(Date())
             jsonObject.put("id", id)
             jsonObject.put("title", title)
             jsonObject.put("note", note)
