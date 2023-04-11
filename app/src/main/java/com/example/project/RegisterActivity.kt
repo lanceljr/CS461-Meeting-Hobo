@@ -29,7 +29,10 @@ class RegisterActivity : AppCompatActivity() {
             findViewById<EditText>(R.id.editTextConfirmPassword).text.toString()) {
             createToast("Please ensure your confirmed password is the same as your password!")
 
-        } else {
+        } else if (!findViewById<EditText>(R.id.editTextEmailRegister).text.toString().contains("@")){
+            createToast("Please ensure you are entering a valid email address!")
+        }
+        else {
             val name = findViewById<EditText>(R.id.editTextName).text.toString()
             val email = findViewById<EditText>(R.id.editTextEmailRegister).text.toString()
             val password = findViewById<EditText>(R.id.editTextPasswordRegister).text.toString()

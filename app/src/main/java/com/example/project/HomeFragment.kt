@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -51,13 +52,16 @@ class HomeFragment : Fragment(), View.OnClickListener {
     ): View? {
         // Inflate the layout for this fragment
 
+
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+        val myButton = view.findViewById<Button>(R.id.button)
+        myButton.setOnClickListener(this::onClick)
         val sharedPreferences =
             requireContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
         // Retrieve the token from SharedPreferences
         val name = sharedPreferences.getString("name", "")
         val textView = view.findViewById<TextView>(R.id.textView2)
-        textView.text = names
+        textView.text = name
         return view
     }
 

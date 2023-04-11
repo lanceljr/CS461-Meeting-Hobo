@@ -111,28 +111,35 @@ class RecordingsFragment : Fragment(), View.OnClickListener {
             }
 
             override fun onResponse(call: okhttp3.Call, response: Response) {
-                val body = JSONObject(response.body?.string()!!)
-                val responseData = body.getJSONArray("data")
-                for (i in 0 until responseData.length()) {
-                    val d = responseData.getJSONObject(i)
-                    val id = d.getString("_id")
-                    val title = d.getString("title")
-                    val time = d.getString("time")
-                    val date = d.getString("date")
-                    val hasBeenAssigned = d.getBoolean("hasBeenAssigned")
-                    val jsonSentences = d.getJSONArray("sentences")
-                    val firstSentences = d.getJSONObject("firstSentences")
-                    val firstArr = ArrayList<Pair<String, String>>()
-                    val sentences = ArrayList<Pair<String, String>>()
-                    for (i in 0 until jsonSentences.length()) {
-                        val sentence = jsonSentences.getJSONArray(i)
-                        sentences.add(Pair(sentence.get(1).toString(), sentence.get(0).toString()))
+                try {
+                    val body = JSONObject(response.body?.string()!!)
+                    val responseData = body.getJSONArray("data")
+                    for (i in 0 until responseData.length()) {
+                        val d = responseData.getJSONObject(i)
+                        val id = d.getString("_id")
+                        val title = d.getString("title")
+                        val time = d.getString("time")
+                        val date = d.getString("date")
+                        val hasBeenAssigned = d.getBoolean("hasBeenAssigned")
+                        val jsonSentences = d.getJSONArray("sentences")
+                        val firstSentences = d.getJSONObject("firstSentences")
+                        val firstArr = ArrayList<Pair<String, String>>()
+                        val sentences = ArrayList<Pair<String, String>>()
+                        for (i in 0 until jsonSentences.length()) {
+                            val sentence = jsonSentences.getJSONArray(i)
+                            sentences.add(Pair(sentence.get(1).toString(), sentence.get(0).toString()))
+                        }
+                        for (key in firstSentences.keys()) {
+                            firstArr.add(Pair(firstSentences.get(key).toString(),key.toString()))
+                        }
+                        dataList.add(MyDataModel(id, title, time, date, sentences, hasBeenAssigned, firstArr))
                     }
-                    for (key in firstSentences.keys()) {
-                        firstArr.add(Pair(firstSentences.get(key).toString(),key.toString()))
-                    }
-                    dataList.add(MyDataModel(id, title, time, date, sentences, hasBeenAssigned, firstArr))
+                } catch (e: Exception) {}
+                finally {
+                    response.body?.close()
                 }
+
+
             }
         })
         return dataList

@@ -79,6 +79,7 @@ class AssignSpeaker : AppCompatActivity() {
                 createToast("Speakers successfully assigned")
                 val it = Intent(this@AssignSpeaker, HomeActivity::class.java)
                 it.putExtra("goToRecordings", true)
+                response.body?.close()
                 startActivity(it)
             }
         })

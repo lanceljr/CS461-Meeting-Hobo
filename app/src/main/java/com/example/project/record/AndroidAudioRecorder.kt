@@ -19,11 +19,14 @@ class AndroidAudioRecorder(private val context: Context) : AudioRecorder {
             setAudioSource(MediaRecorder.AudioSource.MIC)
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
             setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+            setAudioEncodingBitRate(16000)
+            setAudioSamplingRate(44100)
             setOutputFile(FileOutputStream(outputFile).fd)
+            recorder = this
 
             prepare()
             start()
-            recorder = this
+
         }
     }
 

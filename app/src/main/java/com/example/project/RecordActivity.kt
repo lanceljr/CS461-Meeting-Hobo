@@ -3,9 +3,9 @@ package com.example.project
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.media.AudioFormat
-import android.media.MediaRecorder
+
 import android.os.*
+import android.util.Base64
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.EditText
@@ -17,13 +17,13 @@ import com.example.project.playback.AndroidAudioPlayer
 import com.example.project.record.AndroidAudioRecorder
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.asRequestBody
-import org.json.JSONObject
 import java.io.File
+import java.io.FileInputStream
 import java.io.IOException
-import java.text.SimpleDateFormat
 import java.util.*
-import java.util.stream.Stream.builder
+
+
+
 
 class RecordActivity : AppCompatActivity() {
     private var recording: Boolean = false
@@ -32,6 +32,7 @@ class RecordActivity : AppCompatActivity() {
     private var timer: CountDownTimer? = null
     private var timerRunning: Boolean = false
     private var seconds: Long = 0
+    val bitRate = 1536
     private val recorder by lazy {
 
         AndroidAudioRecorder(this)
@@ -119,41 +120,52 @@ class RecordActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
         // Retrieve the token from SharedPreferences
         val userid = sharedPreferences.getString("userid", "")
+//        val mp3File = Mp3File(audioFile!!)
 
+        val name = findViewById<EditText>(R.id.meetingName).text.toString()
+        if (name == "") {
+            createToast("Please key in a meeting name.")
+        } else {
+            val client = OkHttpClient()
 
-        val client = OkHttpClient()
+            // check if recording is completed, throw exception if not
 
-        // check if recording is completed, throw exception if not
-        val requestBody = MultipartBody.Builder()
-            .setType(MultipartBody.FORM)
-            .addFormDataPart("name", findViewById<EditText>(R.id.meetingName).text.toString())
-            .addFormDataPart("recording",audioFile!!.name, RequestBody.create("audio/*".toMediaTypeOrNull(), audioFile!!))
-            .build()
+            val audioBytes = audioFile!!.readBytes()
+            val audioString = Base64.encodeToString(audioBytes, Base64.DEFAULT)
 
-        val request = Request.Builder()
-            .url("http://10.0.2.2:5000/transcribe/" + userid)
-            .post(requestBody)
-            .build()
-        println(request.toString())
+            val requestBody = MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("name", findViewById<EditText>(R.id.meetingName).text.toString())
+                .addFormDataPart("recording",audioFile!!.name, RequestBody.create("application/json".toMediaTypeOrNull(), audioString))
+                .build()
 
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: okhttp3.Call, e: IOException) {
-                createToast("There has been an error. Please try again!")
-            }
+            val request = Request.Builder()
+                .url("http://10.0.2.2:5000/transcribe/" + userid)
+                .post(requestBody)
+                .build()
+            println(request.toString())
 
-            override fun onResponse(call: okhttp3.Call, response: Response) {
-                try {
-                    createToast("Recording is being processed")
-                    response.body?.close()
-                    goBackToRecordings()
-                    }
-                 catch (e: Exception) {
-
-                } finally {
-
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: okhttp3.Call, e: IOException) {
+                    createToast("There has been an error. Please try again!")
                 }
-            }
-        })
+
+                override fun onResponse(call: okhttp3.Call, response: Response) {
+                    try {
+                        createToast("Recording is being processed")
+                        goBackToRecordings()
+                    }
+                    catch (e: Exception) {
+
+                    } finally {
+                        response.body?.close()
+                    }
+                }
+            })
+        }
+
+
+
 
     }
 
